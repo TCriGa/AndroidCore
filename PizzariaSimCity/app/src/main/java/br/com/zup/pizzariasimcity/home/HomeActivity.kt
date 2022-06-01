@@ -2,11 +2,35 @@ package br.com.zup.pizzariasimcity.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import br.com.zup.pizzariasimcity.R
+import br.com.zup.pizzariasimcity.FragmentClick
+import br.com.zup.pizzariasimcity.databinding.ActivityHomeBinding
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), FragmentClick {
+     lateinit var binding: ActivityHomeBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(binding.container.id, ProdutoFragment())
+            .commit()
+
+    }
+
+    override fun onClickFragment(texto: String) {
+        val fragmentoDetalhe = DetalheFragment().apply {
+            arguments = Bundle().apply {
+                putString("TEXTO", texto)
+            }
+        }
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(binding.container.id, fragmentoDetalhe)
+            .addToBackStack("Detalhe")
+            .commit()
     }
 }

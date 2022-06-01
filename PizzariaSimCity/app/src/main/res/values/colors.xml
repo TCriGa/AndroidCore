@@ -11,4 +11,5 @@
     <color name="orange_700">#c66900</color>
     <color name="red_500">#e53935</color>
     <color name="red_700">#ab000d</color>
+    <color name="red_50">#ffebee</color>
 </resources>
