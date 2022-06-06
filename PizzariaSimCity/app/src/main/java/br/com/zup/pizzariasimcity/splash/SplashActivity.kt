@@ -14,14 +14,14 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        timer.schedule(object : TimerTask() {
+        timer.schedule(object : TimerTask() { //schedule --> Agendamento
             override fun run() {
                 jump()
             }
         }, 3000)
     }
 
-    private fun jump() {
+    private fun jump() { //cancelar o time
         timer.cancel()
         startActivity(Intent(this, HomeActivity::class.java))
         this.finish()
